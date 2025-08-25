@@ -1,40 +1,45 @@
 package main
 
+import "errors"
+
+
+func add(a int64,b int64) (sum int64) {
+   sum = a+b
+   return sum;
+}
+
+//same type multiple parameters
+func sub(a,b int64) (difference int64) {
+   difference = a-b
+   return // just writing return will be enough 
+}
+
+//multiple return values
+func divide(a,b float64) (float64,error){
+   if(b == 0){
+     return 0, errors.New("cannot devide by zero")
+   }
+   return a/b,nil
+}
+
+//variadic functions , accept multiple arguments
+
+func addAll(nums ...int) int{
+   sum := 0
+   for _,num := range(nums){
+    sum += int(num)
+   }
+   return sum
+}
+
 func main(){
-  //Explicit type declaration
-  var x int
-  x = 10
-  println(x)
-
-  // Shorthand declaration, go infers the type
-  y := 42
-  println(y)
-
-  // multiple declaration
-  var m, n = 3, "hello"
-  println(m,n)
-
-  //shorthand multiple declaration
-  a, b := 3,4
-  println(a,b)
-
-  x = 5
-  if true{
-    x := 10 //shadows outer x
-    println(x)
-  }
-  println(x)
-
-  //constants
-  const Pi = 3.14
-
-  //constants are untyped ,allows assignment to int32 variable
-  const Max = 1000
-  var z int32 = Max
-
-  //pointer
-  g := 10;
-  p := &g;
-
-  println(z,g,p)
+   sum := add(3,4)
+   println(sum)
+   result,err := divide(3,0)
+   if(err != nil){
+    println(err)
+   }else{
+    println(result)
+   }
+   println(addAll(3,4,5,6,7))
 }
