@@ -3,6 +3,16 @@ package main
 import "errors"
 
 
+type Student struct{
+   name string 
+   age int
+}
+
+func(s Student) display(){
+   println(s.name)
+   println(s.age)
+}
+
 func add(a int64,b int64) (sum int64) {
    sum = a+b
    return sum;
@@ -42,4 +52,12 @@ func main(){
     println(result)
    }
    println(addAll(3,4,5,6,7))
+
+   raghu := Student{
+      name: "Raghavendra",
+      age: 23,
+   }
+   
+   raghu.display()
+
 }
