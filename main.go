@@ -1,17 +1,13 @@
 package main
 
-import "errors"
+import (
+	"errors"
+
+	"github.com/Raghav123-30/mastering-golang.git/packages/student"
+)
 
 
-type Student struct{
-   name string 
-   age int
-}
 
-func(s Student) display(){
-   println(s.name)
-   println(s.age)
-}
 
 func add(a int64,b int64) (sum int64) {
    sum = a+b
@@ -53,11 +49,8 @@ func main(){
    }
    println(addAll(3,4,5,6,7))
 
-   raghu := Student{
-      name: "Raghavendra",
-      age: 23,
-   }
-   
-   raghu.display()
+  
+   raghu := student.New("Raghavendra",22)
+   raghu.Display()
 
 }
