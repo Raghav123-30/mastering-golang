@@ -9,13 +9,23 @@ import (
 
 
 
-func add(a int64,b int64) (sum int64) {
+func add[T int | float64](a ,b T) (sum T) {
    sum = a+b
    return sum;
 }
 
+type pair[T1 any, T2 any] struct{
+   first T1
+   second T2
+}
+
+func (p pair[T1,T2]) display(){
+  println(p.first)
+  println(p.second)
+}
+
 //same type multiple parameters
-func sub(a,b int64) (difference int64) {
+func sub[T int | float64](a,b T) (difference T) {
    difference = a-b
    return // just writing return will be enough 
 }
@@ -30,10 +40,11 @@ func divide(a,b float64) (float64,error){
 
 //variadic functions , accept multiple arguments
 
-func addAll(nums ...int) int{
-   sum := 0
+func addAll[T int|float64](nums ...T) T{
+   var sum T
+  
    for _,num := range(nums){
-    sum += int(num)
+    sum += num
    }
    return sum
 }
@@ -52,5 +63,21 @@ func main(){
   
    raghu := student.New("Raghavendra",22)
    raghu.Display()
+   println(add(3,4))
+   println(add(3.4,5.6))
+   println(addAll(4,5,6,7,8))
+   println(sub(4,8.5))
 
+   p1 := pair[int, int]{
+      first:3,
+      second:4,
+   }
+
+   p2 := pair[int, string]{
+      first: 3,
+      second:"XD",
+   }
+
+   p1.display()
+   p2.display()
 }
